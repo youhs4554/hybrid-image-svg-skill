@@ -1,0 +1,8 @@
+interface:
+  display_name: "Hybrid Image SVG"
+  short_description: "Make PPT-friendly SVGs from raster layouts"
+  brand_color: "#0B4EDB"
+  default_prompt: "Use $hybrid-image-svg to convert this infographic into a PPT-friendly SVG with cropped image assets and editable text/layout."
+
+policy:
+  allow_implicit_invocation: true
