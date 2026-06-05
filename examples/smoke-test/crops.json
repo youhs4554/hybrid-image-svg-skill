@@ -1,0 +1,4 @@
+[
+  { "name": "photo_panel", "x": 60, "y": 80, "width": 280, "height": 170 },
+  { "name": "complex_icon", "x": 420, "y": 100, "width": 130, "height": 130 }
+]

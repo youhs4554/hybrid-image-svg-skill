@@ -1,4 +1,6 @@
 .DS_Store
+__pycache__/
 assets/icon-crops/
+examples/smoke-test/out/
 *_preview.png
 *.tmp

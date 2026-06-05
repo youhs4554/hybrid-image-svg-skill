@@ -40,6 +40,17 @@ Restart the agent session after installation so the skill list reloads.
 curl -fsSL https://raw.githubusercontent.com/youhs4554/hybrid-image-svg-skill/main/install.sh | bash
 ```
 
+## Smoke Test
+
+After cloning or installing the skill, run the bundled smoke test:
+
+```bash
+cd ~/.agents/skills/hybrid-image-svg
+examples/smoke-test/run.sh
+```
+
+The test generates a small raster source image, crops two complex regions, embeds them into an SVG template, validates the SVG with `xmllint`, and renders a PNG preview with `rsvg-convert`.
+
 ## AI Agent Setup Prompt
 
 Give this prompt to an AI coding agent that has shell access:
@@ -53,7 +64,8 @@ Steps:
 3. If that folder already exists and is a git repository, run git pull in it instead.
 4. Verify that ~/.agents/skills/hybrid-image-svg/SKILL.md exists.
 5. Verify that ~/.agents/skills/hybrid-image-svg/scripts/embed_crops.py exists.
-6. Tell me to restart the agent session so the skill list reloads.
+6. Run ~/.agents/skills/hybrid-image-svg/examples/smoke-test/run.sh.
+7. Tell me to restart the agent session so the skill list reloads.
 ```
 
 After setup, use the skill like this:
@@ -114,6 +126,8 @@ The script crops each region and replaces placeholders with base64 PNG data URIs
 ├── SKILL.md
 ├── agents/
 │   └── openai.yaml
+├── examples/
+│   └── smoke-test/
 ├── scripts/
 │   └── embed_crops.py
 ├── install.sh

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <style>
+      .card { fill: #fff; stroke: #146f9f; stroke-width: 4; }
+      .label { font-family: Arial, sans-serif; font-size: 28px; font-weight: 700; fill: #111; }
+      .body { font-family: Arial, sans-serif; font-size: 18px; fill: #222; }
+      .arrow { fill: #1386ce; }
+    </style>
+  </defs>
+
+  <rect width="800" height="450" fill="#f7fbfd"/>
+  <rect class="card" x="36" y="48" width="340" height="300" rx="18"/>
+  <image href="{{photo_panel}}" x="60" y="80" width="280" height="170"/>
+  <text class="label" x="60" y="295">Editable SVG text</text>
+  <text class="body" x="60" y="325">The visual panel above is embedded image data.</text>
+
+  <polygon class="arrow" points="395,178 448,178 448,148 510,225 448,302 448,270 395,270"/>
+
+  <rect class="card" x="530" y="48" width="234" height="300" rx="18"/>
+  <image href="{{complex_icon}}" x="585" y="100" width="130" height="130"/>
+  <text class="label" x="573" y="295">Shape Layer</text>
+  <text class="body" x="573" y="325">Cards and text remain editable.</text>
+</svg>
