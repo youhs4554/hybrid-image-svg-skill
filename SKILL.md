@@ -7,6 +7,16 @@ description: Use when converting a raster infographic, slide image, screenshot, 
 
 Create a PPT-friendly SVG by rebuilding structural elements as SVG shapes/text and embedding complex visual elements, including real photos, as cropped images from the source raster.
 
+## Stable Approach
+
+This skill's stable conversion mode is text-first hybrid SVG:
+
+- Rebuild all readable text as SVG `<text>`/`<tspan>` wherever practical, including titles, labels, bullets, table/card text, captions, company names, and footer callouts.
+- Rebuild layout structure as editable SVG shapes: outer panels, cards, separators, pills, banners, arrows, simple connector lines, dots, and basic geometric marks.
+- Embed only complex visual assets as cropped images: photos, screenshots, maps, charts, product shots, logos, pictograms, detailed icons, shadows, gradients, and texture-heavy regions.
+- Avoid cropping a whole text-containing panel or banner just because it is visually exact. If a crop contains text, that text will not become an editable PPT text box.
+- Use larger bitmap-in-SVG regions only for an explicit exact-preview variant, not for the main PPT-editable output.
+
 ## Use This For
 
 - Infographics or slide screenshots that must be imported into PowerPoint.
@@ -24,7 +34,7 @@ Do not use this when the user needs every icon to be independently editable vect
    sips -g pixelWidth -g pixelHeight input.png
    ```
 
-2. Identify regions to keep as images: photos, product shots, screenshots, maps, complex illustrations, charts, icons, small pictograms, logos, shadows, gradients, and texture-heavy backgrounds.
+2. Identify regions to keep as images: photos, product shots, screenshots, maps, complex illustrations, charts, icons, small pictograms, logos, shadows, gradients, and texture-heavy backgrounds. Do not include surrounding text in these crops unless that text is part of a logo or screenshot that should remain a single image.
 
 3. Crop those regions into `assets/icon-crops/`:
 
@@ -36,7 +46,7 @@ Do not use this when the user needs every icon to be independently editable vect
 4. Rebuild the SVG with:
 
    - outer panels, cards, separators, pills, and banners as `<rect>`, `<path>`, `<line>`, `<circle>`.
-   - text as `<text>`/`<tspan>`, using likely local Korean fonts such as `"Malgun Gothic"` and `"Apple SD Gothic Neo"` when relevant.
+   - all editable text as `<text>`/`<tspan>`, using likely local Korean fonts such as `"Malgun Gothic"` and `"Apple SD Gothic Neo"` when relevant.
    - cropped assets and all photographic regions as embedded base64 `<image>` elements.
    - original `viewBox` dimensions matching the source raster.
 
@@ -86,9 +96,11 @@ In `template.svg`:
 ## Practical Rules
 
 - Avoid full-image tracing as the default for PPT. It often creates tens or hundreds of thousands of paths.
+- Avoid full-panel crops as the default for PPT-editable SVG. They hide text inside images and prevent PPT text-box extraction.
 - If visual exactness matters more than editability, also provide an exact bitmap-in-SVG variant.
 - If PPT editability matters, keep text and layout as SVG elements and embed the hard-to-draw or photo-real pieces.
 - Never trace photographs or photo-real regions into SVG paths by default. Crop and embed them as images unless the user explicitly asks for a stylized vector/posterized result.
+- Prefer many small, tight image crops over a few large text-containing crops when building the main editable output.
 - Crop slightly tight around icons when the crop sits on a colored banner; background color mismatches make visible rectangles.
 - For icons on solid colored backgrounds, consider transparent background conversion with ImageMagick `-fuzz` and `-transparent`.
 - Always tell the user which parts will remain editable and which parts are embedded images.

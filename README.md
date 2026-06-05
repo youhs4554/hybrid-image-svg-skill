@@ -4,17 +4,29 @@ Codex skill for converting raster infographics, slide screenshots, posters, or p
 
 The skill rebuilds editable layout elements as SVG shapes and text, while embedding complex visual regions such as photos, maps, logos, icons, shadows, and texture-heavy graphics as cropped PNG images.
 
+## Stable Conversion Mode
+
+The stable mode is text-first hybrid SVG:
+
+- Keep readable text editable with SVG `<text>` and `<tspan>` whenever practical.
+- Keep layout editable with SVG shapes for panels, cards, separators, banners, arrows, dots, and connector lines.
+- Embed only complex visual assets as cropped PNG data: photos, screenshots, maps, charts, product shots, logos, pictograms, detailed icons, shadows, gradients, and texture-heavy regions.
+- Avoid full-panel or full-banner crops in the main PPT-editable output because they hide text inside images and prevent PPT text-box extraction.
+- Use large bitmap regions only when producing a separate exact-preview variant.
+
 ## What Stays Editable
 
 - Text rebuilt with SVG `<text>` and `<tspan>`
 - Panels, cards, separators, pills, and banners rebuilt as SVG shapes
 - Lines, circles, rectangles, and simple layout structure
+- Bullets, labels, captions, company names, footer callouts, and other readable text whenever practical
 
 ## What Becomes Embedded Image Data
 
 - Photos and photo-real regions
 - Screenshots, maps, logos, icons, pictograms, shadows, gradients, and texture-heavy areas
 - Any region where vector tracing would make the PPT file slow or visually noisy
+- Text-containing screenshots or logos that must remain a single image
 
 ## Install
 
