@@ -29,6 +29,8 @@ def crop_source(source, crop_dir, item):
         str(source),
         "-crop",
         f"{width}x{height}+{x}+{y}",
+        "+repage",
+        "-strip",
         str(output),
     ])
     return output
